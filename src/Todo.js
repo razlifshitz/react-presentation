@@ -24,28 +24,21 @@ class Todo extends React.Component {
     return (
       <div>
         <input onChange={this.handleNewTodoChange} value={this.state.newTodo} />
-        <button onClick={() => this.add(this.state.value)}>+</button>
-        <ToDoList list={this.state.list} onRemove={this.remove} />
+        <button onClick={() => this.add(this.state.newTodo)}>+</button>
+        {this.state.list.map((item) => (
+          <div>
+            <button
+              style={{ marginRight: 5 }}
+              onClick={() => this.remove(item.id)}
+            >
+              -
+            </button>
+            {item.text}
+          </div>
+        ))}
       </div>
     );
   }
-}
-
-function ToDoList({ list, onRemove }) {
-  return list.map((item) => (
-    <TodoItem key={item.id} item={item} onRemove={onRemove} />
-  ));
-}
-
-function TodoItem({ item, onRemove }) {
-  return (
-    <div>
-      <button style={{ marginRight: 5 }} onClick={() => onRemove(item.id)}>
-        -
-      </button>
-      {item.text}
-    </div>
-  );
 }
 
 export default Todo;
