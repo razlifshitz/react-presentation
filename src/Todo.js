@@ -23,19 +23,32 @@ class Todo extends React.Component {
   render() {
     return (
       <div>
-        <input onChange={this.handleNewTodoChange} value={this.state.newTodo} />
-        <button onClick={() => this.add(this.state.newTodo)}>+</button>
-        {this.state.list.map((item) => (
-          <div>
-            <button
-              style={{ marginRight: 5 }}
-              onClick={() => this.remove(item.id)}
-            >
-              -
-            </button>
-            {item.text}
-          </div>
-        ))}
+        <div className="ui input">
+          <input
+            onChange={this.handleNewTodoChange}
+            value={this.state.newTodo}
+          />
+        </div>
+        <button
+          className="ui blue button"
+          onClick={() => this.add(this.state.newTodo)}
+        >
+          add
+        </button>
+        <div className="ui list">
+          {this.state.list.map((item) => (
+            <div className="ui item">
+              <button
+                className="ui red button"
+                style={{ marginRight: 5 }}
+                onClick={() => this.remove(item.id)}
+              >
+                delete
+              </button>
+              {item.text}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
