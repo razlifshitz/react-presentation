@@ -31,15 +31,15 @@ class Todo extends React.Component {
     });
   };
 
-  handleChange = (event) => {
+  handleNewTodoChange = (event) => {
     this.setState({ ...this.state, newTodo: event.target.value });
   };
 
   render() {
     return (
       <div>
-        <input onChange={this.handleChange} value={this.state.newTodo} />
-        <button onClick={() => this.add(this.state.newTodo)}>+</button>
+        <input onChange={this.handleNewTodoChange} value={this.state.newTodo} />
+        <button onClick={() => this.add(this.state.value)}>+</button>
         <ToDoList list={this.state.list} onRemove={this.remove} />
       </div>
     );
