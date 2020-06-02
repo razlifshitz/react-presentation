@@ -2,10 +2,11 @@ import React from "react";
 
 let id = 0;
 class Todo extends React.Component {
-  state = { list: [] };
+  state = { list: [], newTodo: "" };
 
   componentDidMount() {
     this.setState({
+      ...this.state,
       list: [
         { id: -1, text: "Eat" },
         { id: -2, text: "Sleep" },
@@ -31,14 +32,14 @@ class Todo extends React.Component {
   };
 
   handleChange = (event) => {
-    this.setState({ ...this.state, value: event.target.value });
+    this.setState({ ...this.state, newTodo: event.target.value });
   };
 
   render() {
     return (
       <div>
-        <input onChange={this.handleChange} value={this.state.value} />
-        <button onClick={() => this.add(this.state.value)}>+</button>
+        <input onChange={this.handleChange} value={this.state.newTodo} />
+        <button onClick={() => this.add(this.state.newTodo)}>+</button>
         <ToDoList list={this.state.list} onRemove={this.remove} />
       </div>
     );
