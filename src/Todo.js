@@ -35,23 +35,35 @@ class Todo extends React.Component {
         >
           add
         </button>
-        <div className="ui list">
-          {this.state.list.map((item) => (
-            <div className="ui item">
-              <button
-                className="ui red button"
-                style={{ marginRight: 5 }}
-                onClick={() => this.remove(item.id)}
-              >
-                delete
-              </button>
-              {item.text}
-            </div>
-          ))}
-        </div>
+        <TodoList list={this.state.list} onRemove={this.remove} />
       </div>
     );
   }
+}
+
+function TodoList({ list, onRemove }) {
+  return (
+    <div className="ui list">
+      {list.map((item) => (
+        <TodoItem item={item} onRemove={onRemove} />
+      ))}
+    </div>
+  );
+}
+
+function TodoItem({ item, onRemove }) {
+  return (
+    <div className="ui item">
+      <button
+        className="ui red button"
+        style={{ marginRight: 5 }}
+        onClick={() => onRemove(item.id)}
+      >
+        delete
+      </button>
+      {item.text}
+    </div>
+  );
 }
 
 export default Todo;
