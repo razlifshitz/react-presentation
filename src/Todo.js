@@ -4,6 +4,21 @@ let id = 0;
 class Todo extends React.Component {
   state = { list: [], newTodo: "" };
 
+  componentDidMount() {
+    this.setState({
+      ...this.state,
+      list: [
+        { id: -1, text: "Eat" },
+        { id: -2, text: "Code" },
+        { id: -3, text: "Sleep" },
+      ],
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {}
+
+  componentWillUnmount() {}
+
   add = (text) => {
     this.setState({
       list: [...this.state.list, { id: ++id, text: text }],
