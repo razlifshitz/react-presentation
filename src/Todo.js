@@ -20,9 +20,15 @@ class Todo extends React.Component {
   componentWillUnmount() {}
 
   add = (text) => {
-    this.setState({
-      list: [...this.state.list, { id: ++id, text: text }],
-    });
+    if (text) {
+      this.setState({
+        list: [
+          ...this.state.list,
+          { id: ++id, text: text, user: this.props.user },
+        ],
+        newTodo: "",
+      });
+    }
   };
 
   remove = (id) => {
@@ -37,45 +43,58 @@ class Todo extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="ui input">
-          <input
-            onChange={this.handleNewTodoChange}
-            value={this.state.newTodo}
-          />
-        </div>
-        <button
-          className="ui blue button"
-          onClick={() => this.add(this.state.newTodo)}
-        >
-          add
-        </button>
-        <TodoList list={this.state.list} onRemove={this.remove} />
+      <div style={{ margin: "0 auto", width: 255 }}>
+        {this.props.user && (
+          <>
+            <div className="ui input">
+              <input
+                onChange={this.handleNewTodoChange}
+                value={this.state.newTodo}
+              />
+            </div>
+            <button
+              className="ui blue button"
+              onClick={() => this.add(this.state.newTodo)}
+            >
+              add
+            </button>
+          </>
+        )}
+        <TodoList
+          list={this.state.list}
+          onRemove={this.remove}
+          user={this.props.user}
+        />
       </div>
     );
   }
 }
 
-function TodoList({ list, onRemove }) {
+function TodoList({ list, onRemove, user }) {
   return (
-    <div className="ui list">
-      {list.map((item) => (
-        <TodoItem item={item} onRemove={onRemove} />
-      ))}
-    </div>
+    <>
+      <h2>All items:</h2>
+      <div className="ui list">
+        {list.map((item) => (
+          <TodoItem key={item.id} item={item} onRemove={onRemove} user={user} />
+        ))}
+      </div>
+    </>
   );
 }
 
-function TodoItem({ item, onRemove }) {
+function TodoItem({ item, onRemove, user }) {
   return (
     <div className="ui item">
-      <button
-        className="ui red button"
-        style={{ marginRight: 5 }}
-        onClick={() => onRemove(item.id)}
-      >
-        delete
-      </button>
+      {user === item.user && (
+        <button
+          className="ui red mini button"
+          style={{ marginRight: 5 }}
+          onClick={() => onRemove(item.id)}
+        >
+          delete
+        </button>
+      )}
       {item.text}
     </div>
   );
