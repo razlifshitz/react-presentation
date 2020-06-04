@@ -1,30 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import TodoList from "./TodoList";
+import { createNewTodo, deleteTodo } from "../actionsCreators";
 
-let id = 0;
-function TodoWithHooks({ user }) {
-  const [list, setList] = useState([
-    { id: -1, text: "Eat", user: "matan" },
-    { id: -2, text: "Code", user: "raz" },
-    { id: -3, text: "Sleep", user: "raz" },
-  ]);
+function TodoWithHooks({
+  user,
+  list,
+  userTodosCount,
+  createNewTodo,
+  deleteTodo,
+}) {
   const [newTodo, setNewTodo] = useState("");
-  const [userTodosCount, setUserTodosCount] = useState(null);
-
-  useEffect(() => {
-    const filtered = list.filter((item) => item.user === user);
-    setUserTodosCount(filtered.length);
-  }, [user, list]);
 
   function add(text) {
     if (text) {
-      setList([...list, { id: ++id, text: text, user: user }]);
+      createNewTodo(text, user);
       setNewTodo("");
     }
   }
 
   function remove(id) {
-    setList(list.filter((el) => el.id !== id));
+    deleteTodo(id, user);
   }
 
   return (
@@ -48,4 +44,13 @@ function TodoWithHooks({ user }) {
   );
 }
 
-export default TodoWithHooks;
+function mapStateToProps(state, ownProps) {
+  return {
+    list: state.list,
+    userTodosCount: state.userTodosCount[ownProps.user],
+  };
+}
+
+export default connect(mapStateToProps, { createNewTodo, deleteTodo })(
+  TodoWithHooks
+);

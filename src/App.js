@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropsDemo from "./PropsDemo";
-import Todo from "./Todo.js";
+import TodoHook from "./TodoWithHooks";
 
 function App() {
   const [user, setUser] = useState("");
@@ -25,7 +25,7 @@ function App() {
           handleSignOut={handleSignOut}
         ></Credential>
       </div>
-      <Todo user={user}></Todo>
+      <TodoHook user={user}></TodoHook>
     </>
   );
 }
