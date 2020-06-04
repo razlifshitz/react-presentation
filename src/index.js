@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import App from "./App";
-import { todoListReducer, userTodosCounter } from "./reducers";
+import { todoListReducer, activeUserReducer } from "./reducers";
 
 const store = createStore(
   combineReducers({
     list: todoListReducer,
-    userTodosCount: userTodosCounter,
+    activeUserReducer: activeUserReducer,
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

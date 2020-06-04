@@ -3,13 +3,7 @@ import { connect } from "react-redux";
 import TodoList from "./TodoList";
 import { createNewTodo, deleteTodo } from "../actionsCreators";
 
-function TodoWithHooks({
-  user,
-  list,
-  userTodosCount,
-  createNewTodo,
-  deleteTodo,
-}) {
+function TodoWithHooks({ user, list, createNewTodo, deleteTodo }) {
   const [newTodo, setNewTodo] = useState("");
 
   function add(text) {
@@ -36,7 +30,6 @@ function TodoWithHooks({
           <button className="ui blue button" onClick={() => add(newTodo)}>
             add
           </button>
-          <div>You have {userTodosCount} Todos</div>
         </>
       )}
       <TodoList list={list} onRemove={remove} user={user} />
@@ -44,10 +37,10 @@ function TodoWithHooks({
   );
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     list: state.list,
-    userTodosCount: state.userTodosCount[ownProps.user],
+    user: state.activeUserReducer,
   };
 }
 

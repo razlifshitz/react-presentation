@@ -11,3 +11,17 @@ export const deleteTodo = (id, user) => {
     payload: { id, user },
   };
 };
+
+// SIGN IN / OUT
+export const signIn = (user) => {
+  return {
+    type: "SIGN_IN",
+    payload: user,
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: "SIGN_OUT",
+  };
+};

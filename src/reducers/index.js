@@ -19,16 +19,12 @@ export const todoListReducer = (
   }
 };
 
-export const userTodosCounter = (state = { raz: 2 }, action) => {
+export const activeUserReducer = (state = null, action) => {
   switch (action.type) {
-    case "CREATE_TODO":
-      !state[action.payload.user]
-        ? (state[action.payload.user] = 1)
-        : state[action.payload.user]++;
-      return state;
-    case "DELETE_TODO":
-      state[action.payload.user]--;
-      return state;
+    case "SIGN_IN":
+      return action.payload;
+    case "SIGN_OUT":
+      return null;
     default:
       return state;
   }
