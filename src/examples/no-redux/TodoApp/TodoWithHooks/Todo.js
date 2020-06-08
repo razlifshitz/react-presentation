@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import TodoList from "./TodoList";
-import { createNewTodo, deleteTodo } from "../../actionsCreators";
 
-function TodoWithHooks({ user, list, createNewTodo, deleteTodo }) {
+let id = 0;
+function TodoWithHooks({ user }) {
+  const [list, setList] = useState([
+    { id: -1, text: "Eat", user: "matan" },
+    { id: -2, text: "Code", user: "raz" },
+    { id: -3, text: "Sleep", user: "raz" },
+  ]);
   const [newTodo, setNewTodo] = useState("");
+  const [userTodosCount, setUserTodosCount] = useState(null);
+
+  useEffect(() => {
+    const filtered = list.filter((item) => item.user === user);
+    setUserTodosCount(filtered.length);
+  }, [user, list]);
 
   function add(text) {
     if (text) {
-      createNewTodo(text, user);
+      setList([...list, { id: ++id, text: text, user: user }]);
       setNewTodo("");
     }
   }
 
   function remove(id) {
-    deleteTodo(id, user);
+    setList(list.filter((el) => el.id !== id));
   }
 
   return (
@@ -30,6 +40,7 @@ function TodoWithHooks({ user, list, createNewTodo, deleteTodo }) {
           <button className="ui blue button" onClick={() => add(newTodo)}>
             add
           </button>
+          <div>You have {userTodosCount} Todos</div>
         </>
       )}
       <TodoList list={list} onRemove={remove} user={user} />
@@ -37,13 +48,4 @@ function TodoWithHooks({ user, list, createNewTodo, deleteTodo }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    list: state.list,
-    user: state.activeUserReducer,
-  };
-}
-
-export default connect(mapStateToProps, { createNewTodo, deleteTodo })(
-  TodoWithHooks
-);
+export default TodoWithHooks;

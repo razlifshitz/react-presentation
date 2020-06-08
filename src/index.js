@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
-import App from "./components/App";
+import App from "./App";
 import { todoListReducer, activeUserReducer } from "./reducers";
 
 window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({

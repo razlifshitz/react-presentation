@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Credentials from "../credentials";
+import Credentials from "./Credentials";
 import Todo from "./Todo";
 
 function TodoApp() {

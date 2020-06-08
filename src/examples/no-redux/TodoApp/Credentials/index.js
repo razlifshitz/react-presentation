@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { signIn, signOut } from "../../actionsCreators";
 
-function Credentials({ user, signIn, signOut }) {
+function Credential({ user, handleSignIn, handleSignOut }) {
   const [userField, setUserField] = useState("");
 
   function onSignIt() {
-    signIn(userField);
-
+    handleSignIn(userField);
     setUserField("");
   }
 
@@ -18,7 +15,7 @@ function Credentials({ user, signIn, signOut }) {
           <h3>Hello, {user}</h3>
         </div>
         <div className="item">
-          <button className="ui red mini button" onClick={signOut}>
+          <button className="ui red mini button" onClick={handleSignOut}>
             Sign Out
           </button>
         </div>
@@ -51,10 +48,4 @@ function Credentials({ user, signIn, signOut }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.activeUserReducer,
-  };
-}
-
-export default connect(mapStateToProps, { signIn, signOut })(Credentials);
+export default Credential;
