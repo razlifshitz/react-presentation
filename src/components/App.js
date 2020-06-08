@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import PropsDemo from "./PropsDemo/PropsDemo";
+import HellowWorld from "./HelloWorld";
+import PropsDemo from "./PropsDemo";
+import Todo from "./Todo";
 import TodoWithHook from "./TodoWithHooks";
-import Credentials from "./credentials";
 import HighlightApp from "./Highlight";
 
 function App() {
   return (
     <>
-      {/* <div className="ui secondary pointing menu">
-        <div className="item">
-          <h1>Todo App</h1>
-        </div>
-        <Credentials></Credentials>
-      </div>
-      <TodoWithHook></TodoWithHook> */}
-      <HighlightApp></HighlightApp>
+      {/* <HellowWorld /> */}
+
+      {/* Props itroduction */}
+      {/* <PropsDemo /> */}
+
+      {/* Highligth - comparison to Angular */}
+      {/* <HighlightApp /> */}
+
+      <Todo />
+      {/* TODO HOOKS + REDUX */}
     </>
   );
 }
