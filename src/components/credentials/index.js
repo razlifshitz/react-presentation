@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { signIn, signOut } from "../actionsCreators";
+import { signIn, signOut } from "../../actionsCreators";
 
 function Credentials({ user, signIn, signOut }) {
   const [userField, setUserField] = useState("");

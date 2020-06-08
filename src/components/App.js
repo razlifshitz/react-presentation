@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropsDemo from "./PropsDemo";
+import PropsDemo from "./PropsDemo/PropsDemo";
 import TodoWithHook from "./TodoWithHooks";
 import Credentials from "./credentials";
 

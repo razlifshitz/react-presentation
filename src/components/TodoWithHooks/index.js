@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import TodoList from "./TodoList";
-import { createNewTodo, deleteTodo } from "../actionsCreators";
+import { createNewTodo, deleteTodo } from "../../actionsCreators";
 
 function TodoWithHooks({ user, list, createNewTodo, deleteTodo }) {
   const [newTodo, setNewTodo] = useState("");
