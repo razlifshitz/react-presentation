@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import App from "./App";
-import { todoListReducer, activeUserReducer } from "./reducers";
+import {
+  todoListReducer,
+  activeUserReducer,
+} from "./examples/with-redux/reducers";
 
 window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
   trace: true, // (action) => { return ‘trace as string’; }

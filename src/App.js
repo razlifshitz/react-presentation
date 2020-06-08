@@ -15,10 +15,11 @@ function App() {
       {/* <PropsDemo /> */}
 
       {/* Highligth - comparison to Angular */}
-      {/* <HighlightApp /> */}
+      <HighlightApp />
 
+      {/* TODO APP */}
       {/* <Todo /> */}
-      <TodoWithHook />
+      {/* <TodoWithHook /> */}
 
       {/* TODO HOOKS + REDUX */}
       {/* <TodoWithRedux /> */}
