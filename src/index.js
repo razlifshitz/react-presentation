@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import App from "./App";
+import * as actionCreators from "./examples/with-redux/actionsCreators";
 import {
   todoListReducer,
   activeUserReducer,
@@ -13,12 +15,18 @@ window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
   traceLimit: 25,
 });
 
+const composeEnhancers = composeWithDevTools({
+  actionCreators,
+  trace: true,
+  traceLimit: 25,
+});
+
 const store = createStore(
   combineReducers({
     list: todoListReducer,
     activeUserReducer: activeUserReducer,
   }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers()
 );
 
 ReactDOM.render(
